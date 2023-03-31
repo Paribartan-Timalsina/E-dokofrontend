@@ -39,7 +39,11 @@ const AddProduct = () => {
         body: formdata,
       });
       const data = await res.json();
+      if(res){
+        window.alert("Item added successfully")
+      }
       return data;
+      
     } catch (err) {
       console.log(err);
     }

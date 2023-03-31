@@ -13,6 +13,7 @@ const Users = () => {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
+      credentials:"include",
     });
     const actualData = await response.json();
     setUsers(actualData);
@@ -28,9 +29,11 @@ const Users = () => {
         Accept: "application/json",
       },
       body: JSON.stringify({ name: user.name }),
-    });
+    }).then(
+      alert(`${user.name}'s info has been deleted successfully from Database`),
+      window.location.reload()
+      );
 
-    navigate("/admin/userlist/");
   };
 
   return (

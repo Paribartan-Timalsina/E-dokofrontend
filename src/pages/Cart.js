@@ -7,7 +7,10 @@ import FormatPrice from "../helpers/FormatPrice";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaWindows } from "react-icons/fa";
+
 const Cart = () => {
+  
   const navigate = useNavigate();
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
 
@@ -43,6 +46,7 @@ const Cart = () => {
       });
   };
   const getInfo = (items) => {
+    
     axios
       .get("http://localhost:5000/about", {
         method: "GET",
@@ -52,9 +56,10 @@ const Cart = () => {
           "Content-Type": "application/json",
         },
         credentials: "include",
+        withCredentials:true
       })
       .then((response) => {
-        console.log(response.data);
+       // console.log(response.data);
 
         // if (response.data.name !== "Sergio Aguero" || response.status == 401) {
         //   navigate("/itemlist");
@@ -67,7 +72,7 @@ const Cart = () => {
       })
 
       .catch((error) => {
-        console.log(error);
+        window. alert("Please Sign in to proceed PAYMENT.")
         navigate("/signin");
       });
   };
@@ -87,6 +92,7 @@ const Cart = () => {
           return res.json().then((json) => Promise.reject(json));
         })
         .then(({ url }) => {
+         
           window.location = url;
         });
     } catch (err) {
@@ -145,7 +151,7 @@ const Cart = () => {
               </p>
             </div>
             <div>
-              <Button onClick={() => payMoney(cart)}>Checkout</Button>
+              <Button onClick={() => getInfo(cart)}>Checkout</Button>
             </div>
           </div>
         </div>

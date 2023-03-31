@@ -5,7 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Products from "../Adminfolder/Products.jsx";
 import AddProduct from "../Adminfolder/AddProduct.jsx";
 import axios from "axios";
-import AllOrders from "../Adminfolder/AllOrders.jsx";
+
 import Users from "../Adminfolder/Users.jsx";
 
 const Admin = () => {
@@ -22,14 +22,15 @@ const Admin = () => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        credentials: "include",
+         credentials: "include",
+         withCredentials:true,
       })
       .then((response) => {
         console.log(response.data);
 
-        // if (response.data.name !== "Sergio Aguero" || response.status == 401) {
-        //   navigate("/itemlist");
-        // }
+        if (response.data.name !== "Sergio Aguero" && response.data.email !== "sar55@gmail.com" || response.status == 401) {
+          navigate("/");
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -38,7 +39,7 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    //  calladminData();
+      calladminData();
     // console.log(users)
     //   if(users.name!=="Sergio Aguero"){
     //           navigate("/itemlist")
@@ -77,9 +78,7 @@ const Admin = () => {
               <Button onClick={(e) => navigate("/admin/addproduct")}>
                 Add New Items
               </Button>
-              <Button onClick={(e) => navigate("/admin/orderlist")}>
-                All Orders
-              </Button>
+              
             </ButtonGroup>
           </Col>
           <Col md={8}>
@@ -87,7 +86,7 @@ const Admin = () => {
               <Routes>
                 <Route exact path="/userlist" element={<Users />} />
                 <Route exact path="/productlist" element={<Products />} />
-                <Route exact path="/orderlist" element={<AllOrders />} />
+               
                 <Route exact path="/addproduct" element={<AddProduct />} />
               </Routes>
             </div>

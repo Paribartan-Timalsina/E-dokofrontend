@@ -33,16 +33,18 @@ const Products = () => {
   const deleteitem = async (product) => {
     console.log(product);
 
-    const res = await fetch("http://localhost:5000/deleteitems/", {
-      method: "POST",
+    const res=await fetch("http://localhost:5000/deleteitems/",{
+      method:"POST",
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Accept: "application/json",
-      },
-      body: JSON.stringify({ name: product.name }),
-    });
 
-    navigate("/admin/productlist/");
+      },
+      body: JSON.stringify({name:product.name}),
+    }).then(
+      alert("Item deleted successfully"),
+      window.location.reload()
+      );
   };
 
   console.log(products);

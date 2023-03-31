@@ -10,11 +10,11 @@ const CartItem = ({ id, name, image, color, price, amount }) => {
   return (
     <div className="cart_heading grid grid-five-column">
       <div className="cart-image--name">
-        <div>
+        {/* <div>
           <figure>
             <img src={`http://localhost:5000/${image}`} alt={id} />
           </figure>
-        </div>
+        </div> */}
         <div>
           <p>{name}</p>
           <div className="color-div">
